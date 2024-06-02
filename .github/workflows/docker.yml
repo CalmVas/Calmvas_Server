@@ -49,14 +49,14 @@ jobs:
             linux/arm64
             linux/arm/v7
 
-      - name: RaspberryPi docker permission
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Run sshpass commands
+        uses: matheusvanzan/sshpass-action@v2
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          user: ${{ secrets.USERNAME }}
+          pass: ${{ secrets.PASSWORD }}
           script: |
+            echo "Connected successfully!"
             sudo chmod 666 /var/run/docker.sock
 
       - name: RaspberryPi docker remove
