@@ -1,0 +1,5 @@
+rootProject.name = 'Calmvas_Server'
+include 'Api'
+include 'Common'
+include 'Search'
+include 'Auth'
