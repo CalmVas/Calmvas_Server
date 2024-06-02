@@ -9,8 +9,8 @@ repositories {
     mavenCentral()
 }
 
-bootJar { enabled = false }
-jar { enabled = true }
+bootJar { enabled = true }
+jar { enabled = false }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
