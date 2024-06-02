@@ -53,9 +53,10 @@ jobs:
         uses: matheusvanzan/sshpass-action@v2
         with:
           host: ${{ secrets.HOST }}
+          port: 22
           user: ${{ secrets.USERNAME }}
           pass: ${{ secrets.PASSWORD }}
-          script: |
+          run: |
             echo "Connected successfully!"
             sudo chmod 666 /var/run/docker.sock
 
