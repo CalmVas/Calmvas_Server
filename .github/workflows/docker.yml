@@ -84,8 +84,10 @@ jobs:
           script: |
             # Docker 이미지 다운로드
             sudo docker pull ${{ secrets.DOCKER_REPO }}/calmvas
-
-            docker run -d --rm --name server -p 8080:8080 ${{ secrets.DOCKER_REPO }}/calmvas
+                    
+            docker-compose up -d            
+            
+            # docker run -d --rm --name server -p 8080:8080 ${{ secrets.DOCKER_REPO }}/calmvas
 
             # 사용하지 않는 Docker 이미지 정리
             sudo docker image prune -f
