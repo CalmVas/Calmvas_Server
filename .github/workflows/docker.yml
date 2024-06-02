@@ -50,11 +50,12 @@ jobs:
             linux/arm/v7
 
       - name: RaspberryPi docker permission
-        uses: appleboy/ssh-action@v0.1.6
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
           script: |
             sudo chmod 666 /var/run/docker.sock
 
