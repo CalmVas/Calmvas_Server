@@ -17,7 +17,7 @@ services:
       - test_network
 
   database:
-    container_name: mysql
+    container_name: database
     image: mysql/mysql-server:8.0
     restart: unless-stopped
     environment:
@@ -29,14 +29,14 @@ services:
       - "3306:3306"
     volumes:
       - ./mysql/conf.d:/etc/mysql/conf.d
-      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql-init.d:/docker-entrypoint-initdb.d
     command:
       - mysqld
       - "--character-set-server=utf8mb4"
       - "--collation-server=utf8mb4_unicode_ci"
     networks:
       - test_network
-# Prometheus 모니터링 서비스
+  # Prometheus 모니터링 서비스
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -51,7 +51,7 @@ services:
       - test_network
     user: root
 
-# Grafana 모니터링 시각화 서비스
+  # Grafana 모니터링 시각화 서비스
   grafana:
     image: grafana/grafana
     container_name: grafana
