@@ -60,13 +60,14 @@ jobs:
             echo "Connected successfully!"
             sudo chmod 666 /var/run/docker.sock
 
-      - name: RaspberryPi docker remove
-        uses: appleboy/ssh-action@v0.1.6
+      - name: RaspberryPi Docker Remove
+        uses: matheusvanzan/sshpass-action@v2
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
+          port: 22
+          user: ${{ secrets.USERNAME }}
+          pass: ${{ secrets.PASSWORD }}
+          run: |
             if [ "$(sudo docker ps -aq)" ]; then
               sudo docker stop $(sudo docker ps -aq)
               sudo docker rm -f $(sudo docker ps -aq)
@@ -76,12 +77,13 @@ jobs:
             fi
 
       - name: Docker Run on RaspberryPi
-        uses: appleboy/ssh-action@master
+        uses: matheusvanzan/sshpass-action@v2
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
+          port: 22
+          user: ${{ secrets.USERNAME }}
+          pass: ${{ secrets.PASSWORD }}
+          run: |
             # Docker 이미지 다운로드
             sudo docker pull ${{ secrets.DOCKER_REPO }}/calmvas
 
