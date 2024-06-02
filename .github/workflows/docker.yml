@@ -18,7 +18,7 @@ jobs:
 
       - name: Set .yml for main
         run: |
-          mkdir -p src/main/resources
+          mkdir -p ./Api/src/main/resources/
           echo "${{ secrets.MAIN_DATABASE_YML }}" | base64 --decode > ./Api/src/main/resources/application.yml
 
       - name: Set up Docker Buildx
