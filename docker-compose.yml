@@ -8,7 +8,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/calmvas_dev?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/calmvas_dev?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
     depends_on:
@@ -37,32 +37,32 @@ services:
     networks:
       - test_network
   # Prometheus 모니터링 서비스
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    volumes:
-      - ./prometheus.yml:/prometheus/prometheus.yml:ro
-    ports:
-      - "19090:9090"
-    command:
-      - "--web.enable-lifecycle"
-    restart: always
-    networks:
-      - test_network
-    user: root
-
-  # Grafana 모니터링 시각화 서비스
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    volumes:
-      - ./grafana-volume:/var/lib/grafana
-    restart: always
-    networks:
-      - test_network
-    ports:
-      - "13030:3000"
-    user: root
+#  prometheus:
+#    image: prom/prometheus
+#    container_name: prometheus
+#    volumes:
+#      - ./prometheus.yml:/prometheus/prometheus.yml:ro
+#    ports:
+#      - "19090:9090"
+#    command:
+#      - "--web.enable-lifecycle"
+#    restart: always
+#    networks:
+#      - test_network
+#    user: root
+#
+#  # Grafana 모니터링 시각화 서비스
+#  grafana:
+#    image: grafana/grafana
+#    container_name: grafana
+#    volumes:
+#      - ./grafana-volume:/var/lib/grafana
+#    restart: always
+#    networks:
+#      - test_network
+#    ports:
+#      - "13030:3000"
+#    user: root
 
 networks:
   test_network:
