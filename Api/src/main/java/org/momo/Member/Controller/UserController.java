@@ -32,6 +32,4 @@ public class UserController {
         UserResponse.UserCreateResponse joined = userService.join(userCreateRequest);
         return BaseResponseDto.onSuccess(joined);
     }
-
-
 }
